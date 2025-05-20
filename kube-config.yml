@@ -1,0 +1,25 @@
+# Config file should be created inside Jenkins docker container in /var/jenkins_home/.kube/<config> folder
+
+apiVersion: v1
+kind: Config
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJRllzSy94MlVuckF3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TlRBMU1qQXdNREEwTkRkYUZ3MHpOVEExTVRnd01EQTVORGRhTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUUMzS0FPUjgvaVNXdXF5dHp1V2lXV2tSYndFeWlnU2xsY0lVaWgvVkN2bnh2OUEySmJRQTNNT3U3RjIKK0FBdjd1V2NpQlg0RW1rTDBIamk4QWJkNXprOGozdTJMcXJYYVZOTmRwNWhZRXpzVXZWbnpyMlJNSDM0KyswdwpheCtxcWIzVmthT1BMbTVCemd1cTc5OTM3c0k4Z0xpR0k0cEVzWFp2UmpDeXNFcU4wd3B1MUMxUkVYbzlnSWJPCk1nL0VhWmI4ZjFMMGpiNFZ3NDFMQWFnTmxZUXAvQVVWVFZBcm4rNlVzM3YyZFlWYjI4UEdVS0pYSE1aejY3bnkKTFNOMEVwTFlndjZEbmpobktZTm94U3ByMzJ2OHBRWHVJenl5Uk8wbGFMaERLOFhhcExvU2JxUmkyZm9uWW5RNApGWUJucVZTcmZBaUdBR1Q1alU2eWIvVkRYckdqQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJUUDhzcllVS09lTVJSZ3h5YWtubHMzdlB0eDVEQVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQUZPRDFObDBnbwoyUlJjUjY2czR1VSs5N2hTVEpDV3FWVWs2VnpmTjM0Y3N4YXpQYlVPQm9FdVptSEFMK3JiZ3pNZ05qcHUvTzlpCm9vdUY3VXJTWGRMUFRUUk5LVEMvWFBBS3lvTXdycTU5TnBwaDFMaDZpTk9Jb09hbGpKVjVFWjZUMmxlOW5ISWYKMWQwMTc5anluVkQwMGYxTGNhOC9FM0tkNlFuZ0M1SEtpSEVpTlZUUWxVNk9hbjBPd0gzY1paQmxLZjlaSFRoTgo4ekJDUXRhYlM4K3ltbndrNjFpK3hpNGVoMk41a3hVZFQ1VC9zNHJjT3BZenJXYjdWRmVvNGhKVm1qSVdKOWppCm1kcThsb3FmanU0bGIxTmNONFR0NnRYQnZSZkJ1endvSmFiMmlhS1VIUGwzbnBsR2IzVHJadm9YOVhtZ3FSSm8KUFZ0Qlk0b3FNbzVyCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    server: https://5E86ABCBDE21D9042CCA3B85FB9FDE25.yl4.us-west-1.eks.amazonaws.com
+  name: kubernetes
+contexts:
+- context:
+    cluster: kubernetes
+    user: aws
+  name: aws
+current-context: aws
+users:
+- name: aws
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1beta1
+      command: /usr/local/bin/aws-iam-authenticator
+      args:
+        - "token"
+        - "-i"
+        - "demo-k8s-cluster"
