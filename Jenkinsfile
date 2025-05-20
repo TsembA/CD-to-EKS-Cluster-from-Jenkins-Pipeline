@@ -25,6 +25,7 @@ pipeline {
             steps {
                 script {
                     echo 'deploying docker image...'
+                    // To deploy to LKE cluster use "withKubeConfig([credentialsId: 'lke-credentials', serverUrl 'https://<server-url>'])"
                     sh '''
                         kubectl create deployment nginx-deployment --image=nginx
                         kubectl expose deployment nginx-deployment \
