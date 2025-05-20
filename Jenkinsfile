@@ -5,9 +5,9 @@ pipeline {
     stages {
         stage('build app') {
             steps {
-               script {
-                   echo "building the application..."
-               }
+                script {
+                    echo "building the application..."
+                }
             }
         }
         stage('build image') {
@@ -24,8 +24,15 @@ pipeline {
             }
             steps {
                 script {
-                   echo 'deploying docker image...'
-                   sh 'kubectl create deployment nginx-deployment --image=nginx'
+                    echo 'deploying docker image...'
+                    sh '''
+                        kubectl create deployment nginx-deployment --image=nginx
+                        kubectl expose deployment nginx-deployment \
+                          --type=LoadBalancer \
+                          --name=nginx-service \
+                          --port=80 \
+                          --target-port=80
+                    '''
                 }
             }
         }
