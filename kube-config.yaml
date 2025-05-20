@@ -1,4 +1,4 @@
-# Config file should be created inside Jenkins docker container in /var/jenkins_home/.kube/<config> folder
+# Config file should be created inside Jenkins docker container in /var/jenkins_home/.kube/<config> folder!
 
 apiVersion: v1
 kind: Config
