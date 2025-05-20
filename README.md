@@ -115,13 +115,3 @@ After a successful run:
   * `kubectl` and `aws-iam-authenticator` installed
   * Mounted `kubeconfig`
 * Proper IAM roles for EKS cluster and EC2 nodes
-
----
-
-## ✅ Future Enhancements
-
-* Replace nginx with a real app (Java/Maven, etc.)
-* Add Docker build and ECR push
-* Use Helm or `kubectl apply` with YAML manifests
-* GitHub webhooks for trigger-based deployments
-* Use `docker-compose` or Jenkins shared libraries for DRY pipelines
